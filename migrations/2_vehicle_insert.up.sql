@@ -11,3 +11,15 @@ FROM temp_table;
 
 -- Optionally, you can drop the temporary table when you're done with it
 DROP TABLE temp_table;
+
+-- Vehicle make insert
+create temp table tmp_vehicle_make as
+select distinct "Make"
+from public."Electric_Vehicle_Title_and_Registration_Activity"
+order by "Make";
+
+insert into db.vehicle_make (name)
+select "Make"
+from tmp_vehicle_make;
+
+drop table tmp_vehicle_make;
