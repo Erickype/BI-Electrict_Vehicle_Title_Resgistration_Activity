@@ -44,3 +44,13 @@ left join db.state s on
 order by "Postal Code";
 
 drop table tmp_address;
+
+-- nulls
+create table address_nulls as
+select distinct
+    "County",
+    "City",
+    "State of Residence",
+    "Postal Code"
+from public."Electric_Vehicle_Title_and_Registration_Activity"
+where "Postal Code" isnull;
