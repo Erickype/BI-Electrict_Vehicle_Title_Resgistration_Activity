@@ -35,3 +35,19 @@ alter table db.state
 add constraint fk_city
 foreign key (city)
 references db.city (id);
+
+-- Address constraints
+alter table db.address
+add constraint fk_country
+foreign key (country)
+references db.country (id);
+
+alter table db.address
+add constraint fk_city
+foreign key (city)
+references db.city (id);
+
+alter table db.address
+add constraint fk_state
+foreign key (state)
+references db.state (id);
