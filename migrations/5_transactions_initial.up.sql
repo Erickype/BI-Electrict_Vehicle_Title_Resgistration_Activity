@@ -1,14 +1,14 @@
-create table vehicle_uses(
+create table db.vehicle_uses(
     id serial primary key,
     name text
 );
 
-create table odometer_codes(
+create table db.odometer_codes(
     id serial primary key,
     name text
 );
 
-create table transaction_types(
+create table db.transaction_types(
     id serial primary key,
     name text
 );
@@ -23,3 +23,8 @@ create table db.transactions(
     transaction_type integer,
     dol_transaction_date date
 );
+
+alter table db.transactions
+add constraint fk_vehicle_primary_use
+foreign key (vehicle_primary_use)
+references db.vehicle_uses (id);
