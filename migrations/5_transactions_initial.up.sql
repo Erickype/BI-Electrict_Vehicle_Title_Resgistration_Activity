@@ -25,6 +25,11 @@ create table db.transactions(
 );
 
 alter table db.transactions
+add constraint fk_dol_vehicle_id
+foreign key (dol_vehicle_id)
+references db.vehicle (dol_id);
+
+alter table db.transactions
 add constraint fk_vehicle_primary_use
 foreign key (vehicle_primary_use)
 references db.vehicle_uses (id);
