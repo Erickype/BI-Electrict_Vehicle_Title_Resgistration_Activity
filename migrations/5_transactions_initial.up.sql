@@ -28,3 +28,13 @@ alter table db.transactions
 add constraint fk_vehicle_primary_use
 foreign key (vehicle_primary_use)
 references db.vehicle_uses (id);
+
+alter table db.transactions
+add constraint fk_odometer_code
+foreign key (odometer_code)
+references db.odometer_codes (id);
+
+alter table db.transactions
+add constraint fk_transaction_type
+foreign key (transaction_type)
+references db.transaction_types (id);
