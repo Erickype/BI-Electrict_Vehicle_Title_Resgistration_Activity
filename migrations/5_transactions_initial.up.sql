@@ -20,6 +20,7 @@ create table db.transactions(
     odometer_code integer,
     new_or_used text,
     sale_price numeric,
+    sale_date date,
     transaction_type integer,
     dol_transaction_date date,
     postal_code integer
