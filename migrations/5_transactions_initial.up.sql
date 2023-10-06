@@ -21,7 +21,8 @@ create table db.transactions(
     new_or_used text,
     sale_price numeric,
     transaction_type integer,
-    dol_transaction_date date
+    dol_transaction_date date,
+    postal_code integer
 );
 
 alter table db.transactions
@@ -43,3 +44,8 @@ alter table db.transactions
 add constraint fk_transaction_type
 foreign key (transaction_type)
 references db.transaction_types (id);
+
+alter table db.transactions
+add constraint fk_postal_code
+foreign key (postal_code)
+references db.address (postalcode);
