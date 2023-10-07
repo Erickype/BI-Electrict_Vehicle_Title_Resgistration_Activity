@@ -65,3 +65,18 @@ from public."Electric_Vehicle_Title_and_Registration_Activity" EVTaRA
 left join db.exception_eligibility_codes EEC on
     EVTaRA."2015 HB 2778 Exemption Eligibility" = EEC.name
 order by "DOL Vehicle ID";
+
+-- 2019
+insert into db.transaction_legislation (transaction, legislation, exception_eligibility)
+select
+    row_number() over () as transaction,
+    (
+        select L.id
+        from db.legislation L
+        where L.name = '2019 HB 2042'
+    ) as legislation,
+    EEC.id as exception_eligibility
+from public."Electric_Vehicle_Title_and_Registration_Activity" EVTaRA
+left join db.exception_eligibility_codes EEC on
+    EVTaRA."2019 HB 2042 Clean Alternative Fuel Vehicle (CAFV) Eligibility" = EEC.name
+order by "DOL Vehicle ID";
