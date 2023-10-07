@@ -14,6 +14,7 @@ create table db.transaction_types(
 );
 
 create table db.transactions(
+    id integer primary key ,
     dol_vehicle_id integer,
     vehicle_primary_use integer,
     odometer_reading integer,
@@ -23,15 +24,7 @@ create table db.transactions(
     sale_date date,
     transaction_type integer,
     dol_transaction_date date,
-    postal_code integer,
-    "2015_HB_2778_Exemption_Eligibility" bool,
-    "2019_HB_2042_Exemption_Eligibility" bool,
-    "Meets_2019_HB_2042_Electric_Range" bool,
-    "Meets_2019_HB_2042_Sale_Date" bool,
-    "Meets_2019_HB_2042_Price/Value" bool,
-    "2019_HB_2042_Electric_Range" text,
-    "2019_HB_2042_Sale_Date" text,
-    "2019_HB_2042_Price/Value" text
+    postal_code integer
 );
 
 alter table db.transactions
