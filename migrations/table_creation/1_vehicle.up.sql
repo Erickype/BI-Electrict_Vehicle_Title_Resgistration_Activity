@@ -25,16 +25,16 @@ create table db.vehicle(
 );
 
 ALTER TABLE db.vehicle_model
-    ADD CONSTRAINT fk_vehicle_make
-        FOREIGN KEY (vehicle_make)
-            REFERENCES db.vehicle_make (id);
+ADD CONSTRAINT fk_vehicle_make
+FOREIGN KEY (vehicle_make)
+REFERENCES db.vehicle_make (id);
 
 ALTER TABLE db.vehicle
-    ADD CONSTRAINT fk_vehicle_model
-        FOREIGN KEY (model)
-            REFERENCES db.vehicle_model (id);
+ADD CONSTRAINT fk_vehicle_model
+FOREIGN KEY (model)
+REFERENCES db.vehicle_model (id);
 
 ALTER TABLE db.vehicle
-    ADD CONSTRAINT fk_vehicle_type
-        FOREIGN KEY (type)
-            REFERENCES db.vehicle_type (id);
+ADD CONSTRAINT fk_vehicle_type
+FOREIGN KEY (type)
+REFERENCES db.vehicle_type (id);
