@@ -1,7 +1,11 @@
-select distinct
-    "2015 HB 2778 Exemption Eligibility",
-    "2019 HB 2042 Clean Alternative Fuel Vehicle (CAFV) Eligibility"
-from public."Electric_Vehicle_Title_and_Registration_Activity";
+-- Exception_Eligibility_Codes
+insert into db.exception_eligibility_codes (name)
+SELECT DISTINCT "2015 HB 2778 Exemption Eligibility" AS eligibility
+FROM public."Electric_Vehicle_Title_and_Registration_Activity"
+UNION
+SELECT DISTINCT "2019 HB 2042 Clean Alternative Fuel Vehicle (CAFV) Eligibility"
+FROM public."Electric_Vehicle_Title_and_Registration_Activity";
+
 
 select
     "DOL Vehicle ID",

@@ -14,7 +14,7 @@ create table db.transaction_types(
 );
 
 create table db.transactions(
-    id integer primary key ,
+    id serial primary key ,
     dol_vehicle_id integer,
     vehicle_primary_use integer,
     odometer_reading integer,
