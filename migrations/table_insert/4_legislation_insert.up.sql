@@ -6,6 +6,50 @@ UNION
 SELECT DISTINCT "2019 HB 2042 Clean Alternative Fuel Vehicle (CAFV) Eligibility"
 FROM public."Electric_Vehicle_Title_and_Registration_Activity";
 
+-- Legislation
+insert into db.legislation (name)
+values ('2015 HB 2778');
+insert into db.legislation (name)
+values ('2019 HB 2042');
+
+-- Legislation requirement codes (just have '2019 HB 2042')
+insert into db.legislation_requirement_code (legislation, name)
+select id, 'Electric Range Requirement'
+from db.legislation
+where name = '2019 HB 2042';
+
+insert into db.legislation_requirement_code (legislation, name)
+select id, 'Sale Date Requirement'
+from db.legislation
+where name = '2019 HB 2042';
+
+insert into db.legislation_requirement_code (legislation, name)
+select id, 'Sale Price/Value Requirement'
+from db.legislation
+where name = '2019 HB 2042';
+
+-- Legislation_Requirement_Details_Code
+insert into db.Legislation_Requirement_Details_Code (legislation_requirement, name)
+select LRC.id, 'Battery Range Requirement'
+from db.legislation_requirement_code LRC
+inner join db.legislation L on
+    LRC.legislation = L.id
+where L.name = '2019 HB 2042' and LRC.name = 'Electric Range Requirement';
+
+insert into db.Legislation_Requirement_Details_Code (legislation_requirement, name)
+select LRC.id, 'Purchase Date Requirement'
+from db.legislation_requirement_code LRC
+         inner join db.legislation L on
+        LRC.legislation = L.id
+where L.name = '2019 HB 2042' and LRC.name = 'Sale Date Requirement';
+
+insert into db.Legislation_Requirement_Details_Code (legislation_requirement, name)
+select LRC.id, 'Sale Price/Value Requirement'
+from db.legislation_requirement_code LRC
+         inner join db.legislation L on
+        LRC.legislation = L.id
+where L.name = '2019 HB 2042' and LRC.name = 'Sale Price/Value Requirement';
+
 
 select
     "DOL Vehicle ID",
