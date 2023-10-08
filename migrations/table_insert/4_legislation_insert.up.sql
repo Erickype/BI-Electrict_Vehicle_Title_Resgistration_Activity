@@ -80,3 +80,20 @@ from public."Electric_Vehicle_Title_and_Registration_Activity" EVTaRA
 left join db.exception_eligibility_codes EEC on
     EVTaRA."2019 HB 2042 Clean Alternative Fuel Vehicle (CAFV) Eligibility" = EEC.name
 order by "DOL Vehicle ID";
+
+-- LegislationRequirementValues
+insert into db.legislation_requirement_details_values (name)
+select distinct
+    "2019 HB 2042: Battery Range Requirement"
+from public."Electric_Vehicle_Title_and_Registration_Activity"
+union
+select distinct
+    "2019 HB 2042: Purchase Date Requirement"
+from public."Electric_Vehicle_Title_and_Registration_Activity"
+union
+select distinct
+    "2019 HB 2042: Sale Price/Value Requirement"
+from public."Electric_Vehicle_Title_and_Registration_Activity";
+
+-- LegislationTransactionDetails
+    -- 2019
