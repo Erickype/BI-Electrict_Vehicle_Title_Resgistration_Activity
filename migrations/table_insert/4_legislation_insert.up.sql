@@ -94,6 +94,3 @@ union
 select distinct
     "2019 HB 2042: Sale Price/Value Requirement"
 from public."Electric_Vehicle_Title_and_Registration_Activity";
-
--- LegislationTransactionDetails
-    -- 2019
