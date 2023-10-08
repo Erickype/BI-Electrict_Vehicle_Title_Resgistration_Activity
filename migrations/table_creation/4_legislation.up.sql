@@ -27,11 +27,17 @@ create table db.Transaction_Legislation(
     exception_eligibility integer
 );
 
+create table db.Legislation_Requirement_Details_Values(
+    id serial primary key,
+    name text
+);
+
 create table db.Transaction_Legislation_Detail(
     transaction_legislation integer,
     legislation_requirement_code integer,
     legislation_requirement_value boolean,
-    legislation_requirement_details_code integer
+    legislation_requirement_details_code integer,
+    legislation_requirement_details_value integer
 );
 
 -- Legislation
@@ -71,6 +77,11 @@ alter table db.Transaction_Legislation_Detail
 add constraint fk_legislation_requirement_details_code
 foreign key (legislation_requirement_details_code)
 references db.Legislation_Requirement_Details_Code (id);
+
+alter table db.Transaction_Legislation_Detail
+add constraint fk_legislation_requirement_details_value
+foreign key (legislation_requirement_details_value)
+references db.Legislation_Requirement_Details_Values (id);
 
 -- Transaction
 alter table db.Transaction_Legislation
