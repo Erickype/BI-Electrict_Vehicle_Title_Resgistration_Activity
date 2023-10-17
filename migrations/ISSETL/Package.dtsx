@@ -11,8 +11,8 @@
   DTS:LocaleID="12298"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{4355AF2B-DFCC-4AAE-BE5C-A8238212F386}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{096DE49F-C827-4641-8D07-48630FD883A4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -310,6 +310,272 @@ order by dol_transaction_date;</property>
                       endId="Package\Load\Dimensions\DimDate\ODBC Destination.Inputs[ODBC Destination Input]"
                       name="ODBC Source Output"
                       startId="Package\Load\Dimensions\DimDate\ODBC Source.Outputs[ODBC Source Output]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Load\Dimensions\DimModelDate"
+              DTS:CreationName="Microsoft.Pipeline"
+              DTS:Description="Data Flow Task"
+              DTS:DTSID="{5D42039B-FE5B-42F2-94B0-1000F5C44644}"
+              DTS:ExecutableType="Microsoft.Pipeline"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="DimModelDate"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\Load\Dimensions\DimModelDate\ODBC Destination"
+                      componentClassID="Microsoft.SSISODBCDst"
+                      contactInfo="ODBC Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                      description="ODBC Destination"
+                      name="ODBC Destination"
+                      usesDispositions="true"
+                      version="1">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the table to be fetched."
+                          expressionType="Notify"
+                          name="TableName">"dw"."dimmodeldate"</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specify the number of rows fetched per batch."
+                          expressionType="Notify"
+                          name="BatchSize">1000</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of rows inserted under the same transaction."
+                          expressionType="Notify"
+                          name="TransactionSize">1000</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Determines the chunk size allocation for LOB columns"
+                          expressionType="Notify"
+                          name="LobChunkSize">32768</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                          expressionType="Notify"
+                          name="StatementTimeout">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The code page to use when code page information is unavailable from the data source."
+                          expressionType="Notify"
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The method used for inserting data. Possible values are 'Batch' or 'Row by row'."
+                          expressionType="Notify"
+                          name="InsertMethod">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The ODBC C data type for binding numeric data."
+                          expressionType="Notify"
+                          name="BindNumericAs">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                          expressionType="Notify"
+                          name="BindCharColumnsAs">0</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Load\Dimensions\DimModelDate\ODBC Destination.Connections[ODBCConnection]"
+                          connectionManagerID="Package.ConnectionManagers[VehiclesRegistration.postgres]"
+                          connectionManagerRefId="Package.ConnectionManagers[VehiclesRegistration.postgres]"
+                          description="The ODBC runtime connection used to access the database."
+                          name="ODBCConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Load\Dimensions\DimModelDate\ODBC Destination.Inputs[ODBC Destination Input]"
+                          errorOrTruncationOperation="Insert"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="ODBC Destination Input"
+                          truncationRowDisposition="FailComponent">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Load\Dimensions\DimModelDate\ODBC Destination.Inputs[ODBC Destination Input].Columns[date]"
+                              cachedDataType="dbDate"
+                              cachedName="date"
+                              externalMetadataColumnId="Package\Load\Dimensions\DimModelDate\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[date]"
+                              lineageId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Output].Columns[date]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Load\Dimensions\DimModelDate\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[date]"
+                              dataType="dbDate"
+                              name="date" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Load\Dimensions\DimModelDate\ODBC Destination.Outputs[ODBC Destination Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="ODBC Destination Error Output"
+                          synchronousInputId="Package\Load\Dimensions\DimModelDate\ODBC Destination.Inputs[ODBC Destination Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Load\Dimensions\DimModelDate\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Load\Dimensions\DimModelDate\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Load\Dimensions\DimModelDate\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Load\Dimensions\DimModelDate\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Load\Dimensions\DimModelDate\ODBC Source"
+                      componentClassID="Microsoft.SSISODBCSrc"
+                      contactInfo="ODBC Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                      description="ODBC Source"
+                      name="ODBC Source"
+                      usesDispositions="true"
+                      version="1">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the table to be fetched."
+                          expressionType="Notify"
+                          name="TableName"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          expressionType="Notify"
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select distinct on (model_year)
+    to_date(model_year::text, 'YYYY') as date
+from db.vehicle
+order by model_year;</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specify the number of rows fetched per batch."
+                          expressionType="Notify"
+                          name="BatchSize">1000</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Determines the chunk size allocation for LOB columns"
+                          expressionType="Notify"
+                          name="LobChunkSize">32768</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Determines how the component exposes CHAR columns. If False, CHAR columns are exposed as (multi-)byte strings (DT_STR), if True, CHAR columns are exposed as wide strings (DT_WSTR)"
+                          expressionType="Notify"
+                          name="ExposeCharColumnsAsUnicode">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                          expressionType="Notify"
+                          name="StatementTimeout">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The code page to use when code page information is unavailable from the data source."
+                          expressionType="Notify"
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The method used for fetching data."
+                          expressionType="Notify"
+                          name="FetchMethod">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The ODBC C data type for binding numeric data."
+                          expressionType="Notify"
+                          name="BindNumericAs">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                          expressionType="Notify"
+                          name="BindCharColumnsAs">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The mode used to access the database."
+                          expressionType="Notify"
+                          name="AccessMode"
+                          typeConverter="AccessMode">1</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Load\Dimensions\DimModelDate\ODBC Source.Connections[ODBCConnection]"
+                          connectionManagerID="Package.ConnectionManagers[VehiclesRegistration.postgres]"
+                          connectionManagerRefId="Package.ConnectionManagers[VehiclesRegistration.postgres]"
+                          description="The ODBC runtime connection used to access the database."
+                          name="ODBCConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Output]"
+                          errorRowDisposition="FailComponent"
+                          name="ODBC Source Output"
+                          truncationRowDisposition="FailComponent">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Output].Columns[date]"
+                              dataType="dbDate"
+                              externalMetadataColumnId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[date]"
+                              lineageId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Output].Columns[date]"
+                              name="date" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[date]"
+                              dataType="dbDate"
+                              name="date" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Error Output]"
+                          isErrorOut="true"
+                          name="ODBC Source Error Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Error Output].Columns[date]"
+                              dataType="dbDate"
+                              externalMetadataColumnId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[date]"
+                              lineageId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Error Output].Columns[date]"
+                              name="date" />
+                            <outputColumn
+                              refId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\Load\Dimensions\DimModelDate.Paths[ODBC Source Output]"
+                      endId="Package\Load\Dimensions\DimModelDate\ODBC Destination.Inputs[ODBC Destination Input]"
+                      name="ODBC Source Output"
+                      startId="Package\Load\Dimensions\DimModelDate\ODBC Source.Outputs[ODBC Source Output]" />
                   </paths>
                 </pipeline>
               </DTS:ObjectData>
@@ -1217,11 +1483,15 @@ from db.vehicle_type;</property>
           Size="165,42"
           Id="Package\Load\Dimensions\DimVehicleModel"
           TopLeft="19,63" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Load\Dimensions\DimModelDate"
+          TopLeft="191,63" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="500,125"
-          Size="500,168"
+          PanelSize="500,164"
+          Size="500,207"
           Id="Package\Load\Dimensions"
           TopLeft="16,13" />
         <ContainerLayout
@@ -1507,6 +1777,77 @@ from db.vehicle_type;</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load\Dimensions\DimVehicleModel\ODBC Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load\Dimensions\DimModelDate">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Load\Dimensions\DimModelDate\ODBC Source"
+          TopLeft="272,209" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Load\Dimensions\DimModelDate\ODBC Destination"
+          TopLeft="371,353" />
+        <EdgeLayout
+          Id="Package\Load\Dimensions\DimModelDate.Paths[ODBC Source Output]"
+          TopLeft="346.5,251">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="109,102"
+              Start="0,0"
+              End="109,94.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,47"
+                    Point2="0,51"
+                    Point3="4,51" />
+                  <mssgle:LineSegment
+                    End="105,51" />
+                  <mssgle:CubicBezierSegment
+                    Point1="105,51"
+                    Point2="109,51"
+                    Point3="109,55" />
+                  <mssgle:LineSegment
+                    End="109,94.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load\Dimensions\DimModelDate\ODBC Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load\Dimensions\DimModelDate\ODBC Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
