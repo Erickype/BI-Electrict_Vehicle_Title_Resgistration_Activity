@@ -20,3 +20,7 @@ select distinct on (model_year)
     to_date(model_year::text, 'YYYY') as date
 from db.vehicle
 order by model_year;
+
+-- DimVehiclePrimaryUse
+select id, name
+from db.vehicle_uses;
