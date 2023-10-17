@@ -6,3 +6,7 @@ from db.vehicle_type;
 select distinct dol_transaction_date
 from db.transactions
 order by dol_transaction_date;
+
+-- DimVehicleMake
+select id, name
+from db.vehicle_make;
