@@ -10,3 +10,7 @@ order by dol_transaction_date;
 -- DimVehicleMake
 select id, name
 from db.vehicle_make;
+
+-- DimVehicleModel
+select id, name
+from db.vehicle_model;
