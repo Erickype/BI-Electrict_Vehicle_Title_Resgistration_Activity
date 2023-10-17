@@ -1,5 +1,4 @@
 -- Dimensions
-
 create table dw.DimVehicleType(
     id integer primary key,
     name text
@@ -20,7 +19,7 @@ create table dw.DimVehicleModel(
 );
 
 create table dw.DimModelDate(
-    date date
+    date date primary key
 );
 
 create table dw.DimVehiclePrimaryUse(
