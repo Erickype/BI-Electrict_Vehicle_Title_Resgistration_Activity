@@ -3,7 +3,7 @@ create table dw.FactRegistrationCleanAlternative(
     date date,
     vehicleMake integer,
     vehicleModel integer,
-    vehiclePrimaryUser integer,
+    vehiclePrimaryUse integer,
     vehicleRegistrationNumber integer,
     registrationPercentage numeric
 );

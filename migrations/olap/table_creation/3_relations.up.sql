@@ -21,7 +21,7 @@ references dw.dimvehiclemodel (id);
 
 alter table dw.factregistrationcleanalternative
 add constraint fk_vehiclePrimaryUse
-foreign key (vehicleprimaryuser)
+foreign key (vehicleprimaryuse)
 references dw.dimvehicleprimaryuse (id);
 
 -- FactLegislationRequirement

@@ -11,8 +11,8 @@
   DTS:LocaleID="12298"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{D25ECF9B-2D2A-44ED-9B58-B58DE220B38B}">
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{DEC8F9E3-396D-40E4-A993-E10F6DE559BB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1742,7 +1742,486 @@ from db.vehicle_type;</property>
             </DTS:Executable>
           </DTS:Executables>
         </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load\Facts"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Contenedor de secuencias"
+          DTS:DTSID="{48B5BF7D-914F-4B51-AB39-EEAC8C7A6A4C}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Facts">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Load\Facts\FactRegistrationCleanAlternative"
+              DTS:CreationName="Microsoft.Pipeline"
+              DTS:Description="Data Flow Task"
+              DTS:DTSID="{3819F07D-FAF3-4180-BBC0-F588E6AA87B3}"
+              DTS:ExecutableType="Microsoft.Pipeline"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="FactRegistrationCleanAlternative"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination"
+                      componentClassID="Microsoft.SSISODBCDst"
+                      contactInfo="ODBC Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                      description="ODBC Destination"
+                      name="ODBC Destination"
+                      usesDispositions="true"
+                      version="1">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the table to be fetched."
+                          expressionType="Notify"
+                          name="TableName">"dw"."factregistrationcleanalternative"</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specify the number of rows fetched per batch."
+                          expressionType="Notify"
+                          name="BatchSize">1000</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of rows inserted under the same transaction."
+                          expressionType="Notify"
+                          name="TransactionSize">1000</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Determines the chunk size allocation for LOB columns"
+                          expressionType="Notify"
+                          name="LobChunkSize">32768</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                          expressionType="Notify"
+                          name="StatementTimeout">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The code page to use when code page information is unavailable from the data source."
+                          expressionType="Notify"
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The method used for inserting data. Possible values are 'Batch' or 'Row by row'."
+                          expressionType="Notify"
+                          name="InsertMethod">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The ODBC C data type for binding numeric data."
+                          expressionType="Notify"
+                          name="BindNumericAs">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                          expressionType="Notify"
+                          name="BindCharColumnsAs">0</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Connections[ODBCConnection]"
+                          connectionManagerID="Package.ConnectionManagers[VehiclesRegistration.postgres]"
+                          connectionManagerRefId="Package.ConnectionManagers[VehiclesRegistration.postgres]"
+                          description="The ODBC runtime connection used to access the database."
+                          name="ODBCConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input]"
+                          errorOrTruncationOperation="Insert"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="ODBC Destination Input"
+                          truncationRowDisposition="FailComponent">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].Columns[vehicleregistrationnumber]"
+                              cachedDataType="i8"
+                              cachedName="vehicleregistrationnumber"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[vehicleregistrationnumber]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[vehicleregistrationnumber]" />
+                            <inputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].Columns[type]"
+                              cachedDataType="i4"
+                              cachedName="type"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[vehicletype]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[type]" />
+                            <inputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].Columns[vehicle_make]"
+                              cachedDataType="i4"
+                              cachedName="vehicle_make"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[vehiclemake]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[vehicle_make]" />
+                            <inputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].Columns[model]"
+                              cachedDataType="i4"
+                              cachedName="model"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[vehiclemodel]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[model]" />
+                            <inputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].Columns[vehicle_primary_use]"
+                              cachedDataType="i4"
+                              cachedName="vehicle_primary_use"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[vehicleprimaryuse]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[vehicle_primary_use]" />
+                            <inputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].Columns[percentage]"
+                              cachedDataType="numeric"
+                              cachedName="percentage"
+                              cachedPrecision="28"
+                              cachedScale="6"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[registrationpercentage]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[percentage]" />
+                            <inputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].Columns[dol_transaction_date]"
+                              cachedDataType="dbDate"
+                              cachedName="dol_transaction_date"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[date]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[dol_transaction_date]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[vehicletype]"
+                              dataType="i4"
+                              name="vehicletype" />
+                            <externalMetadataColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[date]"
+                              dataType="dbDate"
+                              name="date" />
+                            <externalMetadataColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[vehiclemake]"
+                              dataType="i4"
+                              name="vehiclemake" />
+                            <externalMetadataColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[vehiclemodel]"
+                              dataType="i4"
+                              name="vehiclemodel" />
+                            <externalMetadataColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[vehicleprimaryuse]"
+                              dataType="i4"
+                              name="vehicleprimaryuse" />
+                            <externalMetadataColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[vehicleregistrationnumber]"
+                              dataType="i4"
+                              name="vehicleregistrationnumber" />
+                            <externalMetadataColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[registrationpercentage]"
+                              dataType="numeric"
+                              name="registrationpercentage"
+                              precision="28"
+                              scale="6" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Outputs[ODBC Destination Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="ODBC Destination Error Output"
+                          synchronousInputId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source"
+                      componentClassID="Microsoft.SSISODBCSrc"
+                      contactInfo="ODBC Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                      description="ODBC Source"
+                      name="ODBC Source"
+                      usesDispositions="true"
+                      version="1">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="The name of the table to be fetched."
+                          expressionType="Notify"
+                          name="TableName"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          expressionType="Notify"
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">WITH Counts AS (
+    SELECT
+        V.type,
+        T.dol_transaction_date,
+        VM.vehicle_make,
+        V.model,
+        T.vehicle_primary_use,
+        COUNT(V.dol_id) AS vehicleRegistrationNumber
+    FROM db.vehicle V
+         LEFT JOIN db.vehicle_model VM ON V.model = VM.id
+        join db.transactions T on V.dol_id = T.dol_vehicle_id
+    GROUP BY
+        V.type,
+        VM.vehicle_make,
+        V.model,
+        T.vehicle_primary_use,
+        T.dol_transaction_date
+    order by T.dol_transaction_date
+)
+
+SELECT
+    C.type,
+    C.dol_transaction_date,
+    C.vehicle_make,
+    C.model,
+    C.vehicle_primary_use,
+    C.vehicleRegistrationNumber,
+    (C.vehicleRegistrationNumber * 100.0) / NULLIF(sum(C.vehicleRegistrationNumber) over(), 0) AS percentage
+FROM Counts C;</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specify the number of rows fetched per batch."
+                          expressionType="Notify"
+                          name="BatchSize">1000</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Determines the chunk size allocation for LOB columns"
+                          expressionType="Notify"
+                          name="LobChunkSize">32768</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Determines how the component exposes CHAR columns. If False, CHAR columns are exposed as (multi-)byte strings (DT_STR), if True, CHAR columns are exposed as wide strings (DT_WSTR)"
+                          expressionType="Notify"
+                          name="ExposeCharColumnsAsUnicode">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                          expressionType="Notify"
+                          name="StatementTimeout">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The code page to use when code page information is unavailable from the data source."
+                          expressionType="Notify"
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The method used for fetching data."
+                          expressionType="Notify"
+                          name="FetchMethod">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The ODBC C data type for binding numeric data."
+                          expressionType="Notify"
+                          name="BindNumericAs">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                          expressionType="Notify"
+                          name="BindCharColumnsAs">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="The mode used to access the database."
+                          expressionType="Notify"
+                          name="AccessMode"
+                          typeConverter="AccessMode">1</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Connections[ODBCConnection]"
+                          connectionManagerID="Package.ConnectionManagers[VehiclesRegistration.postgres]"
+                          connectionManagerRefId="Package.ConnectionManagers[VehiclesRegistration.postgres]"
+                          description="The ODBC runtime connection used to access the database."
+                          name="ODBCConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output]"
+                          errorRowDisposition="FailComponent"
+                          name="ODBC Source Output"
+                          truncationRowDisposition="FailComponent">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[type]"
+                              dataType="i4"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[type]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[type]"
+                              name="type" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[vehicle_make]"
+                              dataType="i4"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[vehicle_make]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[vehicle_make]"
+                              name="vehicle_make" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[model]"
+                              dataType="i4"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[model]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[model]"
+                              name="model" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[vehicle_primary_use]"
+                              dataType="i4"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[vehicle_primary_use]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[vehicle_primary_use]"
+                              name="vehicle_primary_use" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[vehicleregistrationnumber]"
+                              dataType="i8"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[vehicleregistrationnumber]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[vehicleregistrationnumber]"
+                              name="vehicleregistrationnumber" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[percentage]"
+                              dataType="numeric"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[percentage]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[percentage]"
+                              name="percentage"
+                              precision="28"
+                              scale="6" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[dol_transaction_date]"
+                              dataType="dbDate"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[dol_transaction_date]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].Columns[dol_transaction_date]"
+                              name="dol_transaction_date" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[type]"
+                              dataType="i4"
+                              name="type" />
+                            <externalMetadataColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[vehicle_make]"
+                              dataType="i4"
+                              name="vehicle_make" />
+                            <externalMetadataColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[model]"
+                              dataType="i4"
+                              name="model" />
+                            <externalMetadataColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[vehicle_primary_use]"
+                              dataType="i4"
+                              name="vehicle_primary_use" />
+                            <externalMetadataColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[vehicleregistrationnumber]"
+                              dataType="i8"
+                              name="vehicleregistrationnumber" />
+                            <externalMetadataColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[percentage]"
+                              dataType="numeric"
+                              name="percentage"
+                              precision="28"
+                              scale="6" />
+                            <externalMetadataColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[dol_transaction_date]"
+                              dataType="dbDate"
+                              name="dol_transaction_date" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output]"
+                          isErrorOut="true"
+                          name="ODBC Source Error Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[type]"
+                              dataType="i4"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[type]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[type]"
+                              name="type" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[vehicle_make]"
+                              dataType="i4"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[vehicle_make]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[vehicle_make]"
+                              name="vehicle_make" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[model]"
+                              dataType="i4"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[model]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[model]"
+                              name="model" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[vehicle_primary_use]"
+                              dataType="i4"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[vehicle_primary_use]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[vehicle_primary_use]"
+                              name="vehicle_primary_use" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[vehicleregistrationnumber]"
+                              dataType="i8"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[vehicleregistrationnumber]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[vehicleregistrationnumber]"
+                              name="vehicleregistrationnumber" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[percentage]"
+                              dataType="numeric"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[percentage]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[percentage]"
+                              name="percentage"
+                              precision="28"
+                              scale="6" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[dol_transaction_date]"
+                              dataType="dbDate"
+                              externalMetadataColumnId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[dol_transaction_date]"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[dol_transaction_date]"
+                              name="dol_transaction_date" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\Load\Facts\FactRegistrationCleanAlternative.Paths[ODBC Source Output]"
+                      endId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination.Inputs[ODBC Destination Input]"
+                      name="ODBC Source Output"
+                      startId="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source.Outputs[ODBC Source Output]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
       </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{6A8C8CF3-F8D2-4B54-8A2B-8667B0FDF6A0}"
+          DTS:From="Package\Load\Dimensions"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load\Facts" />
+      </DTS:PrecedenceConstraints>
     </DTS:Executable>
   </DTS:Executables>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
@@ -1756,15 +2235,15 @@ from db.vehicle_type;</property>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
-        <NodeLayout
-          Size="159,42"
-          Id="Package\Load\Dimensions\DimVehicleType"
-          TopLeft="20,12" />
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="122,42"
           Id="Package\Load\Dimensions\DimDate"
           TopLeft="215,118" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Load\Dimensions\DimModelDate"
+          TopLeft="191,63" />
         <NodeLayout
           Size="162,42"
           Id="Package\Load\Dimensions\DimVehicleMake"
@@ -1774,13 +2253,13 @@ from db.vehicle_type;</property>
           Id="Package\Load\Dimensions\DimVehicleModel"
           TopLeft="19,63" />
         <NodeLayout
-          Size="152,42"
-          Id="Package\Load\Dimensions\DimModelDate"
-          TopLeft="191,63" />
-        <NodeLayout
           Size="192,42"
           Id="Package\Load\Dimensions\DimVehiclePrimaryUse"
           TopLeft="16,119" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Load\Dimensions\DimVehicleType"
+          TopLeft="20,12" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -1788,55 +2267,43 @@ from db.vehicle_type;</property>
           Size="366,219"
           Id="Package\Load\Dimensions"
           TopLeft="16,13" />
+        <NodeLayout
+          Size="240,42"
+          Id="Package\Load\Facts\FactRegistrationCleanAlternative"
+          TopLeft="5.5,5.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="568,325"
-          Size="568,368"
-          Id="Package\Load"
-          TopLeft="35,30" />
-      </GraphLayout>
-    </LayoutInfo>
-  </Package>
-  <TaskHost
-    design-time-name="Package\Load\Dimensions\DimVehicleType">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="149,42"
-          Id="Package\Load\Dimensions\DimVehicleType\ODBC Source"
-          TopLeft="195,161" />
-        <NodeLayout
-          Size="169,42"
-          Id="Package\Load\Dimensions\DimVehicleType\ODBC Destination"
-          TopLeft="290,286" />
+          PanelSize="250,103"
+          Size="250,146"
+          Id="Package\Load\Facts"
+          TopLeft="416,33" />
         <EdgeLayout
-          Id="Package\Load\Dimensions\DimVehicleType.Paths[ODBC Source Output]"
-          TopLeft="269.5,203">
+          Id="Package\Load.PrecedenceConstraints[Constraint]"
+          TopLeft="382,122.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="105,83"
+              EndConnector="34,-16.5"
               Start="0,0"
-              End="105,75.5">
+              End="26.5,-16.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.5" />
+                    End="13,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,37.5"
-                    Point2="0,41.5"
-                    Point3="4,41.5" />
+                    Point1="13,0"
+                    Point2="17,0"
+                    Point3="17,-4" />
                   <mssgle:LineSegment
-                    End="101,41.5" />
+                    End="17,-12.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="101,41.5"
-                    Point2="105,41.5"
-                    Point3="105,45.5" />
+                    Point1="17,-12.5"
+                    Point2="17,-16.5"
+                    Point3="21,-16.5" />
                   <mssgle:LineSegment
-                    End="105,75.5" />
+                    End="26.5,-16.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1845,30 +2312,16 @@ from db.vehicle_type;</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="702,325"
+          Size="702,368"
+          Id="Package\Load"
+          TopLeft="35,30" />
       </GraphLayout>
     </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load\Dimensions\DimVehicleType\ODBC Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load\Dimensions\DimVehicleType\ODBC Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
+  </Package>
   <TaskHost
     design-time-name="Package\Load\Dimensions\DimDate">
     <LayoutInfo>
@@ -1920,14 +2373,6 @@ from db.vehicle_type;</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load\Dimensions\DimDate\ODBC Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load\Dimensions\DimDate\ODBC Destination">
     <Properties>
       <Property>
@@ -1940,145 +2385,11 @@ from db.vehicle_type;</property>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Load\Dimensions\DimVehicleMake">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="149,42"
-          Id="Package\Load\Dimensions\DimVehicleMake\ODBC Source"
-          TopLeft="255,165" />
-        <NodeLayout
-          Size="169,42"
-          Id="Package\Load\Dimensions\DimVehicleMake\ODBC Destination"
-          TopLeft="266,300" />
-        <EdgeLayout
-          Id="Package\Load\Dimensions\DimVehicleMake.Paths[ODBC Source Output]"
-          TopLeft="329.5,207">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="21,93"
-              Start="0,0"
-              End="21,85.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,42.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,42.5"
-                    Point2="0,46.5"
-                    Point3="4,46.5" />
-                  <mssgle:LineSegment
-                    End="17,46.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="17,46.5"
-                    Point2="21,46.5"
-                    Point3="21,50.5" />
-                  <mssgle:LineSegment
-                    End="21,85.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load\Dimensions\DimVehicleMake\ODBC Source">
+    design-time-name="Package\Load\Dimensions\DimDate\ODBC Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load\Dimensions\DimVehicleMake\ODBC Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Load\Dimensions\DimVehicleModel">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="149,42"
-          Id="Package\Load\Dimensions\DimVehicleModel\ODBC Source"
-          TopLeft="209,185" />
-        <NodeLayout
-          Size="169,42"
-          Id="Package\Load\Dimensions\DimVehicleModel\ODBC Destination"
-          TopLeft="233,306" />
-        <EdgeLayout
-          Id="Package\Load\Dimensions\DimVehicleModel.Paths[ODBC Source Output]"
-          TopLeft="283.5,227">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="34,79"
-              Start="0,0"
-              End="34,71.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,35.5"
-                    Point2="0,39.5"
-                    Point3="4,39.5" />
-                  <mssgle:LineSegment
-                    End="30,39.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="30,39.5"
-                    Point2="34,39.5"
-                    Point3="34,43.5" />
-                  <mssgle:LineSegment
-                    End="34,71.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load\Dimensions\DimVehicleModel\ODBC Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load\Dimensions\DimVehicleModel\ODBC Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -2133,14 +2444,6 @@ from db.vehicle_type;</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load\Dimensions\DimModelDate\ODBC Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load\Dimensions\DimModelDate\ODBC Destination">
     <Properties>
       <Property>
@@ -2150,6 +2453,156 @@ from db.vehicle_type;</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load\Dimensions\DimModelDate\ODBC Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load\Dimensions\DimVehicleMake">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Load\Dimensions\DimVehicleMake\ODBC Source"
+          TopLeft="255,165" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Load\Dimensions\DimVehicleMake\ODBC Destination"
+          TopLeft="266,300" />
+        <EdgeLayout
+          Id="Package\Load\Dimensions\DimVehicleMake.Paths[ODBC Source Output]"
+          TopLeft="329.5,207">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="21,93"
+              Start="0,0"
+              End="21,85.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.5"
+                    Point2="0,46.5"
+                    Point3="4,46.5" />
+                  <mssgle:LineSegment
+                    End="17,46.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17,46.5"
+                    Point2="21,46.5"
+                    Point3="21,50.5" />
+                  <mssgle:LineSegment
+                    End="21,85.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load\Dimensions\DimVehicleMake\ODBC Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load\Dimensions\DimVehicleMake\ODBC Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load\Dimensions\DimVehicleModel">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Load\Dimensions\DimVehicleModel\ODBC Source"
+          TopLeft="209,185" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Load\Dimensions\DimVehicleModel\ODBC Destination"
+          TopLeft="233,306" />
+        <EdgeLayout
+          Id="Package\Load\Dimensions\DimVehicleModel.Paths[ODBC Source Output]"
+          TopLeft="283.5,227">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="34,79"
+              Start="0,0"
+              End="34,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.5"
+                    Point2="0,39.5"
+                    Point3="4,39.5" />
+                  <mssgle:LineSegment
+                    End="30,39.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="30,39.5"
+                    Point2="34,39.5"
+                    Point3="34,43.5" />
+                  <mssgle:LineSegment
+                    End="34,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load\Dimensions\DimVehicleModel\ODBC Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load\Dimensions\DimVehicleModel\ODBC Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -2204,14 +2657,6 @@ from db.vehicle_type;</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load\Dimensions\DimVehiclePrimaryUse\ODBC Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load\Dimensions\DimVehiclePrimaryUse\ODBC Destination">
     <Properties>
       <Property>
@@ -2221,6 +2666,156 @@ from db.vehicle_type;</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load\Dimensions\DimVehiclePrimaryUse\ODBC Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load\Dimensions\DimVehicleType">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Load\Dimensions\DimVehicleType\ODBC Source"
+          TopLeft="195,161" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Load\Dimensions\DimVehicleType\ODBC Destination"
+          TopLeft="290,286" />
+        <EdgeLayout
+          Id="Package\Load\Dimensions\DimVehicleType.Paths[ODBC Source Output]"
+          TopLeft="269.5,203">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="105,83"
+              Start="0,0"
+              End="105,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.5"
+                    Point2="0,41.5"
+                    Point3="4,41.5" />
+                  <mssgle:LineSegment
+                    End="101,41.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="101,41.5"
+                    Point2="105,41.5"
+                    Point3="105,45.5" />
+                  <mssgle:LineSegment
+                    End="105,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load\Dimensions\DimVehicleType\ODBC Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load\Dimensions\DimVehicleType\ODBC Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load\Facts\FactRegistrationCleanAlternative">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source"
+          TopLeft="365,155" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination"
+          TopLeft="291,287" />
+        <EdgeLayout
+          Id="Package\Load\Facts\FactRegistrationCleanAlternative.Paths[ODBC Source Output]"
+          TopLeft="439.5,197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-64,90"
+              Start="0,0"
+              End="-64,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41"
+                    Point2="0,45"
+                    Point3="-4,45" />
+                  <mssgle:LineSegment
+                    End="-60,45" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-60,45"
+                    Point2="-64,45"
+                    Point3="-64,49" />
+                  <mssgle:LineSegment
+                    End="-64,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load\Facts\FactRegistrationCleanAlternative\ODBC Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
