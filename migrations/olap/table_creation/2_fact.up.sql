@@ -12,6 +12,7 @@ create table dw.FactLegislationRequirement(
     vehicleMake integer,
     vehicleModel integer,
     modelDate date,
+    transactionDate date,
     vehicleType integer,
     requirementsNumberMeet integer,
     modelPrice numeric,

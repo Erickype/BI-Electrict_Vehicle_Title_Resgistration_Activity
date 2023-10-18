@@ -42,6 +42,11 @@ foreign key (modeldate)
 references dw.dimmodeldate (date);
 
 alter table dw.factlegislationrequirement
+add constraint fk_transactionDate
+foreign key (transactionDate)
+references dw.dimdate (date);
+
+alter table dw.factlegislationrequirement
 add constraint fk_vehicleType
 foreign key (vehicletype)
 references dw.dimvehicletype (id);
