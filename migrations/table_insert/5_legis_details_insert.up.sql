@@ -102,7 +102,7 @@ select
     (
         select id
         from db.legislation_requirement_code LRC
-        where LRC.name = 'S ale Price/Value Requirement'
+        where LRC.name = 'Sale Price/Value Requirement'
     ) as LRC,
     "Meets 2019 HB 2042 Sale Date Requirement" as LRV,
     (
